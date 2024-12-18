@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  Prevent modal backdrop from shifting left on Windows due to scrollbar accommodation.
+  This issue occurs because Windows reserves space for the scrollbar, causing the viewport to shift.
+  Using scrollbar-gutter: unset; removes this reserved space when a modal is open.
+*/
+:root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) { scrollbar-gutter: unset; }
+
+#date-picker {
+  @apply cursor-auto hover:no-animation
+}
+
+h1 {
+  @apply font-bold text-3xl mb-2
+}
+
+ul, ol {
+  list-style: unset;
+  margin-left: 2rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+p {
+  margin-bottom: .5rem;
+}
+
+h2, h3 {
+  font-weight: bold;
+}

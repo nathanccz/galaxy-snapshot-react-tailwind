@@ -1,0 +1,32 @@
+{
+    "projects": [
+      {
+        "title": "Static Websites",
+        "heading": "Get a simple, straightforward website off the ground quickly.",
+        "triger": "One",
+        "imgLink": "/images/services-1.jpg",
+        "text": "Static websites are simple, cost-effective sites that can be developed and deployed swiftly. These are perfect for personal portfolios, landing pages or business websites. I ensure every project delivers a fast, responsive design that looks great on any device, boosts your visibility on search engines, and elevates your brand. <br/><br/> Need domain setup or hosting advice? I’ll tailor solutions to your project’s scale and budget, including SSL/TLS security. After launch, you may opt for a maintenance plan to keep your site fresh and secure."
+      },
+      {
+        "title": "E-commerce",
+        "heading": "Unleash your online retail potential with my Shopify and full-stack services.",
+        "triger": "Two",
+        "imgLink": "/images/services-2.jpg",
+        "text": "Online retail sales are estimated to exceed $6.3 trillion USD worldwide in 2024 — and they're expected to reach new heights in the coming years. <br/><br/> Whether you need a storefront, or a custom full-stack solution, I'll ensure a seamless online shopping experience that drives sales and retains customers. I mainly use the Shopify platform because of its easy setup and scalability, but we can discuss alternatives if you prefer other platforms like WooCommerce or Squarespace. <br/><br/> No matter which e-commerce option you go with, you'll enjoy features like secure payment processing, inventory management and order tracking."
+      },
+      {
+        "title": "WordPress",
+        "heading": "Set up your website on the world's most popular content management platform.",
+        "triger": "Four",
+        "imgLink": "/images/services-3.jpg",
+        "text": "WordPress powers nearly a third of the Internet, from small blogs to the websites of major corporations like Sony, Time and NBC. It's the most popular CMS platform in the world and is widely known for being highly customizable, cost-effective and SEO-friendly (meaning your site will rank on Google and other search engines!). <br/><br/> If you're looking for help setting up a WordPress site, I can build you a template-based site or a custom one from the ground up. Have an existing site that you want to migrate over to a new WordPress theme? I'll ensure the process goes as smoothly as possible with nothing lost in between."
+      },
+      {
+        "title": "Web Maintenance",
+        "heading": "Need someone to keep your website up to date? Let me take care of it.",
+        "triger": "Three",
+        "imgLink": "/images/services-4.jpg",
+        "text": "I offer web maintenance services to help you keep your website up to date, hassle-free. Let's discuss setting up a monthly retainer fee depending on the size of your website and the expected changes you plan to make. I'll be on hand to manage everything from security updates and performance tweaks to content changes, image revisions, or adding new pages. <br/><br/> Just <a href='mailto:nathanweb.dev@proton.me' style='color: white; font-weight: bold;'>contact me by email</a>, and I've got you covered."
+      }
+    ]
+  }
