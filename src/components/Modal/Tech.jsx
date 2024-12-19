@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 import { Icon } from "@iconify/react";
 import TechVideo from '../Videos/TechVideo';
-import parser from 'html-react-parser';
+import Article from '../Article/Article';
 
 const Tech = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -84,7 +84,7 @@ const Tech = () => {
                     <h3 className="font-bold text-lg mt-5">{textTransform ? activeProject.ai_title : activeProject.default_title}</h3>
                     <article className="py-4">
                         {textTransform ? 
-                            parser(activeProject.ai_text) 
+                            <Article text={activeProject.ai_text} /> 
                             : activeProject.default_text}
                         <br/>
                         <a className="link link-primary mt-4" href={activeProject.url} target='_blank'>Learn More</a>
