@@ -3,6 +3,7 @@ import React from 'react'
 import { Icon } from "@iconify/react";
 import TechVideo from '../Videos/TechVideo';
 import Article from '../Article/Article';
+import TechSkeleton from '../Skeleton/TechSkeleton';
 
 const Tech = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -10,6 +11,7 @@ const Tech = () => {
     const [projectCount, setProjectCount] = useState(0)
     const [activeProject, setActiveProject] = useState({})
     const [textTransform, setTextTransform] = useState(false)
+    const [defaultText, setDefaultText] = useState(true)
     const MY_TECH_API = 'https://nasa-techport-custom.onrender.com/'
 
     useEffect(() => {
@@ -40,6 +42,7 @@ const Tech = () => {
                 setProjectCount(1)
                 return
             default:
+                setDefaultText(true)
                 setTextTransform(false)
                 setActiveProject(projectData[projectCount - 1])
                 break
@@ -49,6 +52,7 @@ const Tech = () => {
 
     const handleTextTransform = async() => {
         setIsLoading(true)
+        setDefaultText(false)
         await new Promise(resolve => setTimeout(resolve, 3000))
         setIsLoading(false)
         setTextTransform(!textTransform)
@@ -83,9 +87,12 @@ const Tech = () => {
                     }
                     <h3 className="font-bold text-lg mt-5">{textTransform ? activeProject.ai_title : activeProject.default_title}</h3>
                     <article className="py-4">
-                        {textTransform ? 
-                            <Article text={activeProject.ai_text} /> 
-                            : activeProject.default_text}
+                        {isLoading && <TechSkeleton />}
+                        
+                        {textTransform && <Article text={activeProject.ai_text} />}
+                            
+                        {defaultText && activeProject.default_text}    
+                       
                         <br/>
                         <a className="link link-primary mt-4" href={activeProject.url} target='_blank'>Learn More</a>
                     </article>
@@ -96,7 +103,7 @@ const Tech = () => {
                             {
                                 projectData.map((p, i) => {
                                    return (
-                                    <a key={i} role='tab' className={projectCount === i + 1 ? "tab tab-active" : "tab"} onClick={() => setProjectCount(i + 1)}>
+                                    <a key={i} role='tab' className={projectCount === i + 1 ? "tab w-1/5 tab-active" : "tab w-1/5"} onClick={() => setProjectCount(i + 1)}>
                                         {String(i + 1)}
                                     </a>
                                    )
@@ -109,10 +116,10 @@ const Tech = () => {
                     </div>
                     <div className='flex w-full justify-between'>
                         <button className="btn btn-outline" onClick={() => setProjectCount(projectCount - 1)}>
-                            Next <Icon icon="ooui:previous-ltr" className='cursor-pointer text-lg'/>
+                            <Icon icon="ooui:previous-ltr" className='cursor-pointer text-lg'/> Prev
                         </button>
                         <button className="btn btn-outline" onClick={() => setProjectCount(projectCount + 1)}>
-                            Prev <Icon icon="ooui:previous-rtl" className='cursor-pointer text-lg'/>
+                            Next <Icon icon="ooui:previous-rtl" className='cursor-pointer text-lg'/>
                         </button>
                     </div>
                     <div className="modal-action">

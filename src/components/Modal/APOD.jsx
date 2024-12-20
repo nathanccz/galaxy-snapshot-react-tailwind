@@ -71,7 +71,7 @@ const APOD = () => {
                                     <input type="date" id="choose-date" name="choose-date" value={date} min="1995-06-16" max='' onChange={(e) => handleDateChange(e.target.value)} />
                                 </div>
                             </div>
-                            <div className='flex justify-between w-full'>
+                            <div className='flex justify-between w-full gap-3'>
                                 {!isLoading ? 
                                 <button className="btn btn-outline basis-3/4" onClick={() => handleDateChange(generateRandomDate())}>
                                     Get random date <Icon icon="ix:random" className='cursor-pointer text-lg'/>
@@ -79,7 +79,7 @@ const APOD = () => {
                                 <button className="btn btn-outline basis-3/4" onClick={() => handleDateChange(generateRandomDate())}>
                                     <span className="loading loading-spinner loading-sm"></span>
                                 </button>}
-                                <button className="btn btn-outline" onClick={() => handleDateChange(getToday())}>
+                                <button className="btn btn-outline basis-1/4" onClick={() => handleDateChange(getToday())}>
                                     <Icon icon="carbon:reset" className='cursor-pointer text-lg'/>
                                 </button>
                             </div>
@@ -100,8 +100,14 @@ const APOD = () => {
                     </> 
                     : 
                     <div className="flex w-full flex-col gap-4 mt-5">
-                        <div className="skeleton h-64 w-full"></div>
+                        <div className="skeleton h-64 md:h-[500px] w-full"></div>
                         <div className="skeleton h-4 w-28"></div>
+                        <div className="skeleton h-4 w-full"></div>
+                        <div className="skeleton h-4 w-full"></div>
+                        <div className="skeleton h-4 w-full"></div>
+                        <div className="skeleton h-4 w-full"></div>
+                        <div className="skeleton h-4 w-full"></div>
+                        <div className="skeleton h-4 w-full"></div>
                         <div className="skeleton h-4 w-full"></div>
                         <div className="skeleton h-4 w-full"></div>
                     </div>

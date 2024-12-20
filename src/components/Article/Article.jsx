@@ -10,14 +10,7 @@ const Article = ({ text }) => {
 
     useGSAP(
         () => {
-            gsap.timeline({
-                scrollTrigger: {
-                  trigger: ".newArticle", // The element that triggers the animation
-                  start: "top bottom",   // When the top of the container hits the bottom of the viewport
-                  end: "bottom top",     // When the bottom of the container reaches the top of the viewport
-                  scrub: true,           // Smoothly sync animation with scroll
-                }
-              }).from('.newArticle *', {opacity: 0, stagger:0.3, duration:0.8})
+            gsap.timeline().from('.newArticle *', {opacity: 0, stagger:0.3, duration:0.8})
         }, 
         {scope: container}
     )
