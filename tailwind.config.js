@@ -11,5 +11,8 @@ export default {
     extend: {},
   },
   plugins: [daisyui, aspectRatio],
+  daisyui: {
+    themes: ["dark"], // Ensure "dark" is set as the default theme
+  },
 }
 

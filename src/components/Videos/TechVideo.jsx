@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 
 const TechVideo = () => {
   return (
-    <div className="aspect-w-16 aspect-h-9">
+    <div className="aspect-w-16 aspect-h-9 my-5">
       <ReactPlayer 
         className="absolute inset-0"
         url='https://www.youtube.com/watch?v=WeA7edXsU40'

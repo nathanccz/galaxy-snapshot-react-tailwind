@@ -29,7 +29,7 @@ export function generateRandomDate() {
 
 	if (randomYear === 2024) {
 		randomMonth = Math.ceil(Math.random() * maxMonth)
-		randomDay = Math.floor(Math.random() * maxDay)
+		randomDay = Math.ceil(Math.random() * maxDay)//Originally had Math.floor(), which would occassionally produce a "zero" day.
 	} else {
 		randomMonth = Math.ceil(Math.random() * 12)
 		randomDay = Math.ceil(Math.random() * 28)

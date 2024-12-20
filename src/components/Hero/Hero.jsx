@@ -53,7 +53,7 @@ const Hero = () => {
                             </button>
                         </div>
                         <footer id="footer" className="mt-8" data-aos="fade-up">
-                            <p className="copyright tracking-widest text-sm opacity-75 mb-0 text-center">This website is for educational purposes only. It is not affiliated with NASA or related U.S. government agencies.</p>
+                            <p className="copyright tracking-widest text-sm opacity-75 mb-0 text-center">This website is for educational purposes only and is not affiliated with NASA or any other U.S. government agency.</p>
                         </footer>
                     </div>
                 </div>

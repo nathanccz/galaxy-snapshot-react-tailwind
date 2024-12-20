@@ -10,7 +10,7 @@ const Article = ({ text }) => {
 
     useGSAP(
         () => {
-            gsap.timeline().from('.newArticle *', {opacity: 0, stagger:0.3, duration:0.8})
+            gsap.timeline().from('.newArticle > *', {opacity: 0, stagger:0.3, duration:0.8})
         }, 
         {scope: container}
     )

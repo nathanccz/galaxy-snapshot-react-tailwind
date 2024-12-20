@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 const Contact = () => {
 
     const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false)
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -20,16 +21,19 @@ const Contact = () => {
         }));
     };
 
+    const URL = import.meta.env.VITE_WEB3_URL
+    const API_KEY = import.meta.env.VITE_WEB3_KEY
+
     const onFormSubmit = async(event) => {
         event.preventDefault()
         setLoading(true)
         const formData = new FormData(event.target)
-        formData.append("access_key", "31904935-7054-446a-b482-04ea5d153181")
+        formData.append("access_key", API_KEY)
 
         const object = Object.fromEntries(formData)
         const json = JSON.stringify(object)
 
-        const response = await fetch("https://api.web3forms.com/submit", {
+        const response = await fetch(URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -43,11 +47,13 @@ const Contact = () => {
         if (web3Response.success) {
             setFormData({ name: "", email: "", subject: "", message: "" });
             setLoading(false)
-            
+            setSuccess(true)
             setTimeout(() => {
-              successText.style.display = 'none'
+                setSuccess(false)
             }, 5000)
-          }
+        } else {
+            alert('Oops! Something went wrong. Please try again.')
+        }
     
     }
 
@@ -104,21 +110,26 @@ const Contact = () => {
                     ></textarea>
                     <button className="btn btn-outline btn-primary mt-5 w-full md:w-1/2 lg:w-1/4">
                         <div className="flex justify-around gap-3 items-center">
-                            {loading ? 
+                            {loading && 
                             <>
                                 <span>Sending Message</span>
                                 <span className="loading loading-spinner loading-sm"></span>
                             </>
-                            : 
+                            }
+                             {success && 
                             <>
-                                <span>Send Message</span>
-                                <Icon icon="ri:mail-send-line" className='cursor-pointer text-lg'/>
+                            <span>Thanks for your message!</span>
                             </>
                             }
+                            {!loading && !success &&
+                            <>
+                            <span>Send Message</span>
+                            <Icon icon="ri:mail-send-line" className='cursor-pointer text-lg'/>
+                            </>
+                            }   
                         </div>
                     </button>
                 </form>
-                
                 <div className="modal-action">
                     <form method="dialog">
                         <button className="btn">Close</button>
