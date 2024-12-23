@@ -12,6 +12,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@uidotdev/usehooks": "^2.4.1",
     "aos": "^2.3.4",
     "daisyui": "^4.12.20",
     "gsap": "^3.12.5",

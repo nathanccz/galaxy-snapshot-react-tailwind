@@ -3,6 +3,7 @@ import { formatDate, generateRandomDate, getToday } from '../../../utils/helpers
 import { Icon } from "@iconify/react";
 import APODVideo from '../Videos/APODVideo';
 import APODSkeleton from '../Skeleton/APODSkeleton';
+import FaveButton from '../Button/FaveButton';
 
 const APOD = () => {
     
@@ -89,12 +90,18 @@ const APOD = () => {
 
                     {!isLoading ? 
                     <>
-                    {apiData.media_type === 'image' ? 
+                    {apiData.media_type === 'image' ?
+                        <> 
                         <a href={apiData.hdurl} target="_blank">
                         <img src={apiData.url} alt="" className="my-10"/>
                         </a>
+                        
+                        </>
                     : apiData.media_type === 'video' && isPlaying ? 
+                        <> 
                         <APODVideo url={apiData.url} />
+                        
+                        </>
                     :
                         <div className='py-40'>
                             <h2><em>Media not supported. Please pick another day.</em></h2>
@@ -106,11 +113,12 @@ const APOD = () => {
                     : 
                     <APODSkeleton />
                     }
-                    <div className="modal-action">
-                    <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
-                        <button className="btn" onClick={handleModalClose}>Close</button>
-                    </form>
+                    <div className="modal-action flex justify-between">
+                        <FaveButton data={ apiData }/>
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn" onClick={handleModalClose}>Close</button>
+                        </form>
                     </div> 
                 
                 </div> 
