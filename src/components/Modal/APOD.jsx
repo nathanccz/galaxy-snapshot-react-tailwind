@@ -38,10 +38,11 @@ const APOD = () => {
         if (apiData.media_type === 'video') {
             setIsPlaying(true)
         }
-        setIsLoading(true)
+        
         if (date === getToday()) {
             setQuery('')
         } else {
+            setIsLoading(true)
             setQuery('&date=' + date)
         }
     }

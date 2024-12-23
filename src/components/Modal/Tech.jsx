@@ -71,13 +71,13 @@ const Tech = () => {
                 {isLoading && 
                 <Button clickEvent={handleTextTransform}>
                     Transforming text <span className="loading loading-dots loading-sm"></span>
-                </Button>
-                }
-                {defaultText && <Button clickEvent={handleTextTransform}>
+                </Button>}
+                {defaultText && 
+                <Button clickEvent={handleTextTransform}>
                     Transform text <Icon icon="mingcute:ai-line" className='cursor-pointer text-lg'/>
-                </Button>
-                }
-                {textTransform && <Button clickEvent={handleTextTransform}>
+                </Button>}
+                {textTransform && 
+                <Button clickEvent={handleTextTransform}>
                     See original text <Icon icon="carbon:reset" className='cursor-pointer text-lg'/>
                 </Button>
                 }
