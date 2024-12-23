@@ -4,10 +4,8 @@ const About = () => {
         <dialog id="my_modal_3" className="modal">
             <div className="modal-box max-w-3xl">
                 <form method="dialog">
-                    {/* if there is a button in form, it will close the modal */}
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 </form>
-                
                 <h1 className='mb-2 mt-3'>About NASA</h1>
                 <img src="../../image.jpg" alt="" className="my-10"/>
                 <h3 className="font-bold text-lg mt-5">For more than 50 years, NASA has been breaking barriers to achieve the seemingly impossible.</h3>
@@ -16,11 +14,10 @@ const About = () => {
                     <button className="btn btn-outline">Learn more</button>
                 </a> 
                 <div className="modal-action">
-                <form method="dialog">
-                    <button className="btn">Close</button>
-                </form>
+                    <form method="dialog">
+                        <button className="btn">Close</button>
+                    </form>
                 </div> 
-            
             </div> 
         </dialog>
     )

@@ -3,8 +3,11 @@ import Tech from '../Modal/Tech'
 import About from "../Modal/About"
 import Contact from "../Modal/Contact"
 import { Icon } from "@iconify/react";
+import { useState } from "react"
 
 const Hero = () => {
+
+    const [modalOpen, setModalOpen] = useState(false)
 
     return (
         <>
@@ -33,7 +36,7 @@ const Hero = () => {
                         <div className="join join-vertical md:join-horizontal" data-aos="fade-up">
                             <button 
                                 className="join-item btn btn-outline text-md text-white uppercase" 
-                                onClick={()=>document.getElementById('my_modal_2').showModal()}
+                                onClick={()=>{document.getElementById('my_modal_2').showModal(); setModalOpen(!modalOpen)}}
                                 > Latest Tech <Icon icon="material-symbols:biotech-rounded" className='text-xl'/>
                             </button>
                             <button 
@@ -52,7 +55,7 @@ const Hero = () => {
                                 >Contact <Icon icon="bxs:contact" className='text-xl'/>
                             </button>
                         </div>
-                        <footer id="footer" className="mt-8" data-aos="fade-up">
+                        <footer id="footer" className="mt-8">
                             <p className="copyright tracking-widest text-sm opacity-75 mb-0 text-center">This website is for educational purposes only and is not affiliated with NASA or any other U.S. government agency.</p>
                         </footer>
                     </div>

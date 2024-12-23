@@ -17,7 +17,6 @@ const Tech = () => {
 
     useEffect(() => {
         async function fetchProjectData() {
-            console.log('start loading')
             const response = await fetch(MY_TECH_API)
             const data = await response.json()
             const projects = data.projects.slice()
@@ -34,8 +33,8 @@ const Tech = () => {
         switch(true) {
             case projectData.length === 0:  
                 return;
-            case projectCount > 5:
-                setProjectCount(5)
+            case projectCount > projectData.length:
+                setProjectCount(projectData.length)
                 return
             case projectCount < 1:
                 setProjectCount(1)
@@ -51,8 +50,10 @@ const Tech = () => {
 
     const handleTextTransform = async() => {
         setIsLoading(true)
-        setDefaultText(false)
-        await new Promise(resolve => setTimeout(resolve, 3000))
+        setDefaultText(!defaultText)
+        if (defaultText) {
+            await new Promise(resolve => setTimeout(resolve, 3000))
+        }
         setIsLoading(false)
         setTextTransform(!textTransform)
     }
@@ -63,26 +64,28 @@ const Tech = () => {
                 <form method="dialog">
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 </form>
-                <h1 className='mb-2 mt-3'>Discover the Future of Innovation</h1>
+                <h1 className='mb-2 mt-3'>The Future of Innovation</h1>
                 <TechVideo />
                 <h2 className='text-2xl font-bold my-3'>Explore the cutting edge of technology</h2>
                 <p>Transform complex NASA project summaries into engaging content, showcasing the latest tech advancements shaping our world—and beyond:</p>
-                {isLoading ? 
+                {isLoading && 
                 <Button clickEvent={handleTextTransform}>
                     Transforming text <span className="loading loading-dots loading-sm"></span>
                 </Button>
-                :
-                <Button clickEvent={handleTextTransform}>
+                }
+                {defaultText && <Button clickEvent={handleTextTransform}>
                     Transform text <Icon icon="mingcute:ai-line" className='cursor-pointer text-lg'/>
                 </Button>
                 }
-                <h3 className="font-bold text-lg mt-5">{textTransform ? activeProject.ai_title : isLoading ? '' : activeProject.default_title}</h3>
+                {textTransform && <Button clickEvent={handleTextTransform}>
+                    See original text <Icon icon="carbon:reset" className='cursor-pointer text-lg'/>
+                </Button>
+                }
+                <h3 className="font-bold text-lg mt-3">{textTransform ? activeProject.ai_title : isLoading ? '' : activeProject.default_title}</h3>
                 <article className="py-4">
                     {isLoading && <TechSkeleton />}
-                    {textTransform && <Article text={activeProject.ai_text} />}
-                    {defaultText && activeProject.default_text}    
-                    <br/><br/>
-                    <a className="link link-primary mt-4" href={activeProject.url} target='_blank'>Learn More</a>
+                    {textTransform && <Article text={activeProject.ai_text} url={activeProject.url} />}
+                    {defaultText && activeProject.default_text}  
                 </article>
                 <div className='w-full flex justify-between my-5 gap-3'>
                     <div role="tablist" className="tabs tabs-boxed w-full flex items-center justify-between">
