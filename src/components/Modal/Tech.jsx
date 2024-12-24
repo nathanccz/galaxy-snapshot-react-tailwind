@@ -13,7 +13,7 @@ const Tech = () => {
     const [activeProject, setActiveProject] = useState({})
     const [textTransform, setTextTransform] = useState(false)
     const [defaultText, setDefaultText] = useState(true)
-    const MY_TECH_API = 'https://nasa-techport-custom.onrender.com/s'
+    const MY_TECH_API = 'https://nasa-techport-custom.onrender.com/'
 
     useEffect(() => {
         async function fetchProjectData() {
@@ -82,7 +82,6 @@ const Tech = () => {
                 <Button clickEvent={handleTextTransform}>
                     Transform text <Icon icon="mingcute:ai-line" className='cursor-pointer text-lg'/>
                 </Button>}
-               
                 {textTransform && !isLoading && 
                 <Button clickEvent={handleTextTransform}>
                     See original text <Icon icon="carbon:reset" className='cursor-pointer text-lg'/>

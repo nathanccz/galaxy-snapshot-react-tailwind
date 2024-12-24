@@ -81,11 +81,12 @@ const APOD = () => {
                     <span className='font-bold'>{formatDate(apiData.date)}</span>
                     <div className="modal-inner-btn mt-5">
                         <div className='flex flex-col gap-3'>
-                            <div className="btn btn-outline w-full" id="date-picker">
-                                <div className="inner btn-outline">
-                                    <label htmlFor="choose">Choose date: </label>
-                                    <input type="date" id="choose-date" name="choose-date" value={date} min="1995-06-16" max='' onChange={(e) => handleDateChange(e.target.value)} />
-                                </div>
+                            <div className="btn btn-outline w-full hover:bg-none" id="date-picker">
+                            {isLoading ? <span className="loading loading-spinner loading-sm"></span> :
+                                <div className="inner text-sm flex justify-around gap-5 px-[15%] md:px-[20%] lg:px-[25%] items-center">
+                                    <label htmlFor="choose" className='basis-1/3 whitespace-nowrap'>Choose date: </label>
+                                    <input type="date" className='basis-2/3 text-center' id="choose-date" name="choose-date" value={date} min="1995-06-16" max='' onChange={(e) => handleDateChange(e.target.value)} />
+                                </div>}
                             </div>
                             <div className='flex justify-between w-full gap-3'>
                                 {!isLoading ? 
@@ -96,7 +97,8 @@ const APOD = () => {
                                     <span className="loading loading-spinner loading-sm"></span>
                                 </button>}
                                 <button className="btn btn-outline basis-1/4 shrink" onClick={() => handleDateChange(getToday())}>
-                                    <Icon icon="carbon:reset" className='cursor-pointer text-lg'/>
+                                    {isLoading ? <span className="loading loading-spinner loading-sm"></span> :
+                                    <Icon icon="carbon:reset" className='cursor-pointer text-lg'/>}
                                 </button>
                             </div>
                         </div>
@@ -105,12 +107,11 @@ const APOD = () => {
                     {!isLoading ? 
                     <>
                     {apiData.media_type === 'image' ?
-                        <> 
-                        <a href={apiData.hdurl} target="_blank">
-                        <img src={apiData.url} alt="" className="my-10"/>
-                        </a>
-                        
-                        </>
+                        <div className='flex justify-center'> 
+                            <a href={apiData.hdurl} target="_blank">
+                            <img src={apiData.url} alt="" className="my-10"/>
+                            </a>
+                        </div>
                     : apiData.media_type === 'video' && isPlaying ? 
                         <> 
                         <APODVideo url={apiData.url} />

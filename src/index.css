@@ -10,7 +10,19 @@
 :root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) { scrollbar-gutter: unset; }
 
 #date-picker {
-  @apply cursor-auto hover:no-animation
+  all: revert;
+  width: 100%;
+  border: 1px solid rgb(196, 196, 196);
+  border-radius: 10px;
+  text-align: center;
+  padding-top: .65rem;
+  padding-bottom: .65rem;
+}
+
+#date-picker:hover {
+  background-color: transparent;
+  transition: unset;
+  transition-property: unset;
 }
 
 h1 {
