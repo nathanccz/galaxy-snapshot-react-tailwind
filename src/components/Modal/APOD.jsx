@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { formatDate, generateRandomDate, getToday } from '../../../utils/helpers'
-import { useLocalStorage } from "@uidotdev/usehooks"
 import { Icon } from "@iconify/react";
 import APODVideo from '../Videos/APODVideo';
 import APODSkeleton from '../Skeleton/APODSkeleton';
 import FaveButton from '../Button/FaveButton';
-import Drawer from '../Drawer/Drawer';
+import Dropdown from '../Dropdown/Dropdown';
 
 const APOD = () => {
     
@@ -43,7 +42,6 @@ const APOD = () => {
         for (let i = 0; i < localStorage.length - 1; i++) {
             if (localStorage.key(i).includes('apod')) {
                 const key = localStorage.key(i)
-                console.log(localStorage.getItem(key))
                 const value = JSON.parse(localStorage.getItem(key))
                 photos.push(value)
             }
@@ -52,6 +50,8 @@ const APOD = () => {
     }, [isSaved])
 
     const handleDateChange = (date) => {
+        document.getElementById('dropdownMenu').removeAttribute('open')
+
         if (apiData.media_type === 'video') {
             setIsPlaying(true)
         }
@@ -74,7 +74,6 @@ const APOD = () => {
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box max-w-3xl">
                     <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleModalClose}>✕</button>
                     </form>
                     
@@ -130,7 +129,7 @@ const APOD = () => {
                     }
                     <div className="modal-action flex justify-between items-center">
                         <FaveButton data={apiData} saved={isSaved} setter={setIsSaved}/>
-                        <Drawer data={savedPhotos}/>
+                        <Dropdown data={savedPhotos} dateChanger={handleDateChange}/>
                         <form method="dialog">
                             <button className="btn" onClick={handleModalClose}>Close</button>
                         </form>
