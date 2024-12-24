@@ -13,16 +13,22 @@ const Tech = () => {
     const [activeProject, setActiveProject] = useState({})
     const [textTransform, setTextTransform] = useState(false)
     const [defaultText, setDefaultText] = useState(true)
-    const MY_TECH_API = 'https://nasa-techport-custom.onrender.com/'
+    const MY_TECH_API = 'https://nasa-techport-custom.onrender.com/s'
 
     useEffect(() => {
         async function fetchProjectData() {
-            const response = await fetch(MY_TECH_API)
-            const data = await response.json()
-            const projects = data.projects.slice()
-          
-            setProjectData(projects) 
-            setProjectCount(1)  
+            setIsLoading(true)
+           try {
+                const response = await fetch(MY_TECH_API)
+                const data = await response.json()
+                const projects = data.projects.slice()
+            
+                setProjectData(projects) 
+                setProjectCount(1)
+                setIsLoading(false)  
+           } catch (error) {
+                console.log(error)
+           }
         }
 
         fetchProjectData()
@@ -68,7 +74,7 @@ const Tech = () => {
                 <TechVideo />
                 <h2 className='text-2xl font-bold my-3'>Explore the cutting edge of technology</h2>
                 <p>Transform complex NASA project summaries into engaging content, showcasing the latest tech advancements shaping our world—and beyond:</p>
-                {isLoading && 
+                {isLoading && !defaultText &&
                 <Button clickEvent={handleTextTransform}>
                     Transforming text <span className="loading loading-dots loading-sm"></span>
                 </Button>}
@@ -76,14 +82,21 @@ const Tech = () => {
                 <Button clickEvent={handleTextTransform}>
                     Transform text <Icon icon="mingcute:ai-line" className='cursor-pointer text-lg'/>
                 </Button>}
-                {textTransform && 
+               
+                {textTransform && !isLoading && 
                 <Button clickEvent={handleTextTransform}>
                     See original text <Icon icon="carbon:reset" className='cursor-pointer text-lg'/>
                 </Button>
                 }
                 <h3 className="font-bold text-lg mt-3">{textTransform ? activeProject.ai_title : isLoading ? '' : activeProject.default_title}</h3>
                 <article className="py-4">
-                    {isLoading && <TechSkeleton />}
+                    {isLoading && !defaultText && <TechSkeleton />}
+                    {defaultText && isLoading && 
+                    <div className='h-32 my-20 mx-auto text-center w-full'>
+                        <h2 className='mb-10'>Loading API data... Please hold 🙏</h2>
+                        <span className="loading loading-spinner loading-lg"></span>
+                    </div>
+                    }
                     {textTransform && <Article text={activeProject.ai_text} url={activeProject.url} />}
                     {defaultText && activeProject.default_text}  
                 </article>
