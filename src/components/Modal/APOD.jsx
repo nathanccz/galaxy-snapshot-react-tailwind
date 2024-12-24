@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react'
 import { formatDate, generateRandomDate, getToday } from '../../../utils/helpers'
+import { useLocalStorage } from "@uidotdev/usehooks"
 import { Icon } from "@iconify/react";
 import APODVideo from '../Videos/APODVideo';
 import APODSkeleton from '../Skeleton/APODSkeleton';
 import FaveButton from '../Button/FaveButton';
+import Drawer from '../Drawer/Drawer';
 
 const APOD = () => {
     
     const [isLoading, setIsLoading] = useState(false)
     const [isPlaying, setIsPlaying] = useState(true)
+    const [savedPhotos, setSavedPhotos] = useState([])
+    const [isSaved, setIsSaved] = useState(null)
     const [apiData, setApiData] = useState(null)
     const [date, setDate] = useState(null)
     const [query, setQuery] = useState('')
@@ -23,23 +27,34 @@ const APOD = () => {
                 console.log(data)
                 setApiData(data)
                 setDate(data.date)
+                setIsSaved(localStorage.getItem(`apod_${data.date}`) !== null)
             } catch (error) {
                 console.log(error)
             }
-
             await new Promise(resolve => setTimeout(resolve, 1200))
-            
             setIsLoading(false)
-            
         }
         fetchAPOD()
     }, [query])
+
+    useEffect(() => {
+        const photos = []
+        
+        for (let i = 0; i < localStorage.length - 1; i++) {
+            if (localStorage.key(i).includes('apod')) {
+                const key = localStorage.key(i)
+                console.log(localStorage.getItem(key))
+                const value = JSON.parse(localStorage.getItem(key))
+                photos.push(value)
+            }
+        }
+        setSavedPhotos(photos)
+    }, [isSaved])
 
     const handleDateChange = (date) => {
         if (apiData.media_type === 'video') {
             setIsPlaying(true)
         }
-        
         if (date === getToday()) {
             setQuery('')
         } else {
@@ -113,10 +128,10 @@ const APOD = () => {
                     : 
                     <APODSkeleton />
                     }
-                    <div className="modal-action flex justify-between">
-                        <FaveButton data={ apiData }/>
+                    <div className="modal-action flex justify-between items-center">
+                        <FaveButton data={apiData} saved={isSaved} setter={setIsSaved}/>
+                        <Drawer data={savedPhotos}/>
                         <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
                             <button className="btn" onClick={handleModalClose}>Close</button>
                         </form>
                     </div> 

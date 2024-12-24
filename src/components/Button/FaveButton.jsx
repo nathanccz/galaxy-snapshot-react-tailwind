@@ -1,20 +1,20 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
-import { useLocalStorage } from "@uidotdev/usehooks"
 
-const FaveButton = ({ data }) => {
-    const [isSaved, setIsSaved] = useLocalStorage(data.date, null)
-
+const FaveButton = ({ data, saved, setter }) => {
+ 
     const handleFaveClick = () => {
-        if (isSaved) {
-            setIsSaved(null)
+        if (saved) {
+            localStorage.removeItem(`apod_${data.date}`)
+            setter(false)
         } else {
-            setIsSaved(JSON.stringify(data))
+            localStorage.setItem(`apod_${data.date}`, JSON.stringify(data))
+            setter(true)
         }
     }
 
     return (
         <button className="btn btn-outline btn-secondary" onClick={handleFaveClick}>
-            {isSaved ? "Faved!" : "Fave"} <Icon icon={isSaved ? "line-md:heart-filled" : "line-md:heart"} className='cursor-pointer text-lg'/> 
+            <Icon icon={saved ? "line-md:heart-filled" : "line-md:heart"} className='cursor-pointer text-lg'/> 
         </button>
     )
 }

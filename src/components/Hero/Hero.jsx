@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 import { useState } from "react"
 
 const Hero = () => {
-
+   
     const [modalOpen, setModalOpen] = useState(false)
 
     return (
@@ -66,8 +66,3 @@ const Hero = () => {
 }
 
 export default Hero
-
-
-{/* <footer id="footer" className="w-full max-w-full mt-10">
-                    <p className="copyright tracking-widest text-sm opacity-75 mb-0 text-center">This website is for educational purposes only. It is not affiliated with NASA or related U.S. government agencies.</p>
-                </footer> */}
