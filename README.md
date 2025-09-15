@@ -2,10 +2,6 @@
 
 Welcome to my **Galaxy Snapshot** repository!
 
----
-
-## 📜 Galaxy Snapshot
-
 This web app harnesses NASA’s APIs to offer a glimpse into the agency, helping everyday users connect with their cutting-edge research. It transforms highly technical project summaries into short, engaging articles, all powered by a custom REST API built specifically for this app.
 
 
